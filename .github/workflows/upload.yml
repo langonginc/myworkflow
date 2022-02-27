@@ -37,12 +37,11 @@ jobs:
       - name: Zip
         run: |
           zip -r ../OhMySh.zip ./ 
-          mv ../OhMySh.zip .
           
       - uses: actions/upload-artifact@v2
         with:
           name: OhMySh
-          path: ./OhMySh.zip
+          path: ./
           
           
       - name: Upload to release
@@ -50,6 +49,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          file: "./OhMySh.zip"
+          file: "../OhMySh.zip"
           tags: true
           draft: false
