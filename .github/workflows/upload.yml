@@ -28,5 +28,23 @@ jobs:
           pwd
           ls -a
       
-#       - name: Run Zip
-#         uses: papeloto/action-zip@v1
+      - name: Run Zip
+        uses: papeloto/action-zip@v1
+        with:
+          files: ./
+          dest: OhMySh.zip
+          
+      - uses: actions/upload-artifact@v2
+        with:
+          name: OhMySh
+          path: ./OhMySh.zip
+          
+          
+      - name: Upload to release
+        uses: xresloader/upload-to-github-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file: "./OhMySh.zip"
+          tags: true
+          draft: false
